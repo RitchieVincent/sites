@@ -1,0 +1,23 @@
+body {
+    background-color: $bgPrimaryColor;
+    color: #000;
+}
+
+nav {
+    background-color: $primaryColor;
+    border-bottom: 3px solid $secondaryColor;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    padding: 15px;
+    
+    background-color: $bgSecondaryColor;
+    border-top: 3px solid $primaryColor;
+    
+    text-align: center;
+}
