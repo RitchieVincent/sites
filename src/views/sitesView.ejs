@@ -1,14 +1,21 @@
 <% layout('layout') -%>
 
-<div class="title">  
-    <%= title %>
+<div class="container">
+    
+    <div class="card">
+
+        <div class="title">  
+            <h1><%= site.title %></h1>
+        </div>
+
+        <ul>
+
+            <li>
+                <%= site.developer %>
+            </li>
+
+        </ul>
+        
+    </div>
+    
 </div>
-
-<ul>
-
-    <li>
-        <%= site.title %>
-        <%= site.developer %>
-    </li>
-
-</ul>

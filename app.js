@@ -4,7 +4,8 @@ var express = require('express'),
 
 var app = express();
 
-var port = process.env.PORT || 5000;
+var port = 5000;
+//var port = process.env.PORT || 5000;
 
 var nav = [{
     link: '/',
@@ -33,7 +34,7 @@ app.get('/', function (req, res) {
 
     res.render('index', {
         nav: nav,
-        title: 'Index'
+        title: 'Propeller Sites Index'
     });
 
 });

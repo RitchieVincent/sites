@@ -1,19 +1,27 @@
 <% layout('layout') -%>
 
-<div class="title">  
-    <%= title %>
-</div>
+<div class="container">
+    
+    <div class="card">
+
+        <div class="title">  
+            <h1><%= title %></h1>
+        </div>
+
+        <ul>
+
+            <% for(var i=0; i<sites.length;i++){ %>
+
+                <li>
+                    <%= sites[i].title %> - 
+                    <%= sites[i].developer %>
+                     &raquo; <a href="/sites/<%= sites[i]._id %>">Details</a>
+                </li>
+
+            <% } %>
+
+        </ul>
         
-<ul>
-
-    <% for(var i=0; i<sites.length;i++){ %>
-
-        <li>
-            <%= sites[i].title %> - 
-            <%= sites[i].developer %>
-            <a href="/sites/<%= sites[i]._id %>">Read More</a>
-        </li>
-
-    <% } %>
-
-</ul>
+    </div>
+    
+</div>

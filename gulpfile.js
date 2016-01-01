@@ -74,7 +74,7 @@ gulp.task('serve', ['style', 'sass', 'concat', 'inject'], function () {
         delayTime: 1,
         env: {
 
-            'PORT': 3000
+            'PORT': 5000
 
         },
         watch: jsFiles
@@ -83,7 +83,7 @@ gulp.task('serve', ['style', 'sass', 'concat', 'inject'], function () {
 
     browserSync.init({
 
-        proxy: 'localhost:3000'
+        proxy: 'localhost:5000'
 
     });
 
