@@ -90,6 +90,7 @@ gulp.task('serve', ['style', 'sass', 'concat', 'inject'], function () {
     gulp.watch(scssFiles, ['sass']);
     gulp.watch('./public/css/**/*.css', ['concat']);
     gulp.watch('./public/css/**/*.css').on('change', browserSync.reload);
+    gulp.watch('./src/views/**/*.ejs').on('change', browserSync.reload);
 
     return nodemon(options)
         .on('restart', function (ev) {

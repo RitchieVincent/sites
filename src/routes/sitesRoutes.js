@@ -2,14 +2,13 @@ var express = require('express'),
     mongodb = require('mongodb').MongoClient,
     objectId = require('mongodb').ObjectID;
 
-var sitesRouter = express.Router();
+var sitesRouter = express.Router(),
+    url = 'mongodb://localhost:27017/sitesApp';
 
 var router = function (nav) {
 
     sitesRouter.route('/')
         .get(function (req, res) {
-
-            var url = 'mongodb://localhost:27017/sitesApp';
 
             mongodb.connect(url, function (err, db) {
 
@@ -33,8 +32,6 @@ var router = function (nav) {
         .get(function (req, res) {
 
             var id = new objectId(req.params.id);
-
-            var url = 'mongodb://localhost:27017/sitesApp';
 
             mongodb.connect(url, function (err, db) {
 

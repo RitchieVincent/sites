@@ -15,12 +15,17 @@
                 <li>
                     <%= sites[i].title %> - 
                     <%= sites[i].developer %>
-                     &raquo; <a href="/sites/<%= sites[i]._id %>">Details</a>
+                     &raquo; <a href="/sites/<%= sites[i]._id %>">Details</a> -
+                     <a href="/admin/delete/<%= sites[i]._id %>"> Delete</a>
                 </li>
 
             <% } %>
 
         </ul>
+        
+        <br>
+        
+        <p><a href="/admin/new">Add new</a></p>
         
     </div>
     

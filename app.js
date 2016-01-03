@@ -1,6 +1,7 @@
 var express = require('express'),
     fs = require('fs'),
-    engine = require('ejs-locals');
+    engine = require('ejs-locals'),
+    bodyParser = require('body-parser');
 
 var app = express();
 
@@ -18,14 +19,19 @@ var nav = [{
     text: 'Developers'
 }];
 
-var sitesRouter = require('./src/routes/sitesRoutes')(nav);
-var adminRouter = require('./src/routes/adminRoutes')(nav);
-
 app.use(express.static('public'));
 app.set('views', './src/views');
 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+var sitesRouter = require('./src/routes/sitesRoutes')(nav);
+var adminRouter = require('./src/routes/adminRoutes')(nav);
 
 app.use('/sites', sitesRouter);
 app.use('/admin', adminRouter);
