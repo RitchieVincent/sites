@@ -66,7 +66,7 @@ gulp.task('inject', function () {
 
 });
 
-gulp.task('serve', ['style', 'sass', 'concat', 'inject'], function () {
+gulp.task('serve', ['sass', 'concat', 'inject'], function () {
 
     var options = {
 

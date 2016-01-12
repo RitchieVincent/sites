@@ -7,8 +7,8 @@ var adminRouter = express.Router(),
 
 var router = function (nav) {
 
-    adminRouter.route('/new')
-        .get(function (req, res) {
+    adminRouter
+        .get('/new', function (req, res) {
 
             res.render('sitesNew', {
                 nav: nav,
@@ -17,7 +17,7 @@ var router = function (nav) {
 
         })
 
-        .post(function(req, res) {
+        .post('/new', function(req, res) {
 
             mongodb.connect(url, function (err, db) {
 
@@ -47,6 +47,8 @@ var router = function (nav) {
 
                         collection.find({}).toArray(function (err, results) {
 
+                            results.title = 'Site added.';
+
                             res.render('sitesListView', {
                                 nav: nav,
                                 title: 'Sites',
@@ -68,8 +70,44 @@ var router = function (nav) {
 
         });
 
-    adminRouter.route('/delete/:id')
-        .get(function (req, res) {
+    adminRouter
+        .post('/delete', function (req, res) {
+
+            var result = objectId(req.body.id);
+        console.log(req.body);
+
+            try {
+
+                mongodb.connect(url, function (err, db) {
+
+                    var collection = db.collection('sites');
+
+                    collection.remove({_id: result}, 1, function(err, results) {
+
+                        var data = {
+
+                            status: "Site deleted."
+
+                        };
+
+
+                        res.send(JSON.stringify(data));
+
+                    });
+
+                });
+
+            }
+            catch (err) {
+
+                console.log(err);
+
+            }
+
+        });
+
+    adminRouter
+        .get('/modify/:id', function (req, res) {
 
             var id = new objectId(req.params.id);
 
@@ -77,19 +115,72 @@ var router = function (nav) {
 
                 var collection = db.collection('sites');
 
-                collection.remove({_id: id}, 1, function(err, results) {
+                collection.findOne({
+                    _id: id
+                }, function (err, results) {
 
-                    collection.find({}).toArray(function (err, results) {
-
-                        res.render('sitesListView', {
-                            nav: nav,
-                            title: 'Sites',
-                            sites: results
-                        });
-
+                    res.render('modifyView', {
+                        nav: nav,
+                        title: 'Sites',
+                        site: results
                     });
 
                 });
+
+            });
+
+        })
+
+        .post('/modify/:id', function(req, res) {
+
+            mongodb.connect(url, function (err, db) {
+
+                var collection = db.collection('sites'),
+                    id = new objectId(req.params.id),
+                    result = req.body,
+                    tags = result.tags.split(',');
+
+                try {
+
+                    collection.update(
+
+                        {
+                            _id: id
+                        }, {
+
+                            $set: {
+                                title: result.title,
+                                developer: result.developer,
+                                designer: result.designer,
+                                am: result.am,
+                                siteId: result.siteId,
+                                tags: tags
+                            }
+
+                        }, function (err, results) {
+
+                            collection.find({}).toArray(function (err, results) {
+
+                                results.title = 'Site updated.';
+
+                                res.render('sitesListView', {
+                                    nav: nav,
+                                    title: 'Sites',
+                                    sites: results
+                                });
+
+                            });
+
+                        }
+
+                    );
+
+                }
+                catch (err) {
+
+                    console.log(err);
+
+                }
 
             });
 

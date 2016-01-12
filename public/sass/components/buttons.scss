@@ -1,0 +1,23 @@
+.btn {
+    display: inline-block;
+
+    a {
+        display: block;
+        padding: 8px 15px;
+
+        text-decoration: none;
+        color: #fff;
+    }
+
+    &--primary {
+        background-color: $secondaryColor;
+
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: darken($secondaryColor, 10);
+        }
+
+    }
+
+}

@@ -14,9 +14,6 @@ var nav = [{
 }, {
     link: '/sites',
     text: 'Sites'
-}, {
-    link: '/developer',
-    text: 'Developers'
 }];
 
 app.use(express.static('public'));

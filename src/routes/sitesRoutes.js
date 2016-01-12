@@ -84,7 +84,7 @@ var router = function (nav) {
 
 //                    collection.dropIndex('TextIndex');
 
-                    results.title = 'Your search returned ' + results.length + ' results:';
+//                    results.title = 'Your search returned ' + results.length + ' results:';
 
                     res.render('sitesListView', {
                         nav: nav,

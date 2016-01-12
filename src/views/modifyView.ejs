@@ -1,0 +1,49 @@
+<% layout('layout') -%>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="btn  btn--primary"><a href="/sites">Back</a></div>
+
+        <br><br>
+
+        <form method="post">
+
+            <div>
+                <label for="title">Title</label>
+                <input type="text" name="title" placeholder="Site name" required value="<%= site.title %>">
+            </div>
+
+            <div>
+                <label for="developer">Developer</label>
+                <input type="text" name="developer" placeholder="Developer name" required value="<%= site.developer %>">
+            </div>
+
+            <div>
+                <label for="designer">Designer</label>
+                <input type="text" name="designer" placeholder="Designer name" required value="<%= site.designer %>">
+            </div>
+
+            <div>
+                <label for="am">Account Manager</label>
+                <input type="text" name="am" placeholder="Account Manager name" required value="<%= site.am %>">
+            </div>
+
+            <div>
+                <label for="siteId">Site ID</label>
+                <input type="text" name="siteId" placeholder="Site ID" required value="<%= site.siteId %>">
+            </div>
+
+            <div>
+                <label for="tags">Tags</label>
+                <input type="text" name="tags" placeholder="Tags" required value="<%= site.tags %>">
+            </div>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+</div>

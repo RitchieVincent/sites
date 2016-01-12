@@ -1,7 +1,11 @@
 @import "base/variables";
 @import "base/reset";
+@import "base/helpers";
 
 @import "components/card";
+@import "components/tags";
+@import "components/buttons";
+@import "components/text";
 
 @import "page/siteView";
 

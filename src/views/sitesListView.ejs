@@ -1,29 +1,29 @@
 <% layout('layout') -%>
 
 <div class="container">
-    
+
     <div class="card">
 
-        <div class="title">  
+        <div class="title">
             <h1><%= title %></h1>
         </div>
-        
+
         <form method="post">
-        
+
             <input type="search" results="5" placeholder="Site name" name="search">
-            
+
         </form>
-        
+
         <br><br>
-        
+
         <% if(sites.title) { %>
-        
-            <p>
+
+            <p class="success">
                 <%= sites.title %>
             </p>
-            
+
             <br>
-        
+
         <% } %>
 
         <ul>
@@ -31,19 +31,25 @@
             <% for(var i=0; i<sites.length;i++){ %>
 
                 <li>
-                    <a href="/sites/<%= sites[i]._id %>"><%= sites[i].title %></a> - 
-                    <%= sites[i].developer %>
-                     <a href="/admin/delete/<%= sites[i]._id %>"> Delete</a>
+                    <a href="/sites/<%= sites[i]._id %>"><%= sites[i].title %></a> -
+
+                    <form id="delete" method="post" type="multipart/form-data" onSubmit="test(event);" action="/admin/delete">
+
+                        <input type="hidden" name="id" value="<%= sites[i]._id %>">
+
+                        <input type="submit" value="Delete">
+
+                    </form>
                 </li>
 
             <% } %>
 
         </ul>
-        
+
         <br>
-        
-        <p><a href="/admin/new">Add new</a></p>
-        
+
+        <div class="btn  btn--primary"><a href="/admin/new">Add new</a></div>
+
     </div>
-    
+
 </div>
