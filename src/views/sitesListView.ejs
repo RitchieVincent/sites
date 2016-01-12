@@ -7,15 +7,32 @@
         <div class="title">  
             <h1><%= title %></h1>
         </div>
+        
+        <form method="post">
+        
+            <input type="search" results="5" placeholder="Site name" name="search">
+            
+        </form>
+        
+        <br><br>
+        
+        <% if(sites.title) { %>
+        
+            <p>
+                <%= sites.title %>
+            </p>
+            
+            <br>
+        
+        <% } %>
 
         <ul>
 
             <% for(var i=0; i<sites.length;i++){ %>
 
                 <li>
-                    <%= sites[i].title %> - 
+                    <a href="/sites/<%= sites[i]._id %>"><%= sites[i].title %></a> - 
                     <%= sites[i].developer %>
-                     &raquo; <a href="/sites/<%= sites[i]._id %>">Details</a> -
                      <a href="/admin/delete/<%= sites[i]._id %>"> Delete</a>
                 </li>
 

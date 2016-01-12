@@ -14,7 +14,77 @@ var router = function (nav) {
 
                 var collection = db.collection('sites');
 
-                collection.find({}).toArray(function (err, results) {
+                collection.find({
+
+                }).toArray(function (err, results) {
+
+                    res.render('sitesListView', {
+                        nav: nav,
+                        title: 'Sites',
+                        sites: results
+                    });
+
+                });
+
+            });
+
+        })
+
+        .post(function (req, res) {
+
+            mongodb.connect(url, function (err, db) {
+
+                var collection = db.collection('sites'),
+                    search = req.body.search;
+
+                collection.createIndex({
+
+                    '$**': 'text',
+                    tags: 1
+
+                }, {
+                    weights: {
+
+                        title: 10,
+                        developer: 1,
+                        designer: 1,
+                        am: 1,
+                        siteId: 1,
+                        tags: 2
+
+                    },
+                    name: 'TextIndex'
+
+                });
+
+                collection.find({
+
+                    $text: {
+
+                        $search: search
+
+                    }
+
+                }, {
+                    score: {
+
+                        $meta: 'textScore'
+
+                    }
+
+                }).sort({
+
+                    score: {
+
+                        $meta: 'textScore'
+
+                    }
+
+                }).toArray(function (err, results) {
+
+//                    collection.dropIndex('TextIndex');
+
+                    results.title = 'Your search returned ' + results.length + ' results:';
 
                     res.render('sitesListView', {
                         nav: nav,

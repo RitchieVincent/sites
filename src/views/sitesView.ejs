@@ -4,18 +4,24 @@
     
     <div class="card">
 
-        <div class="title">  
-            <h1><%= site.title %></h1>
-        </div>
-
-        <ul>
-
-            <li>
-                <%= site.developer %>
-            </li>
-
-        </ul>
+        <h1 class="siteTitle"><%= site.title %></h1>
+             
+        <img class="image--main" src="http://www.propcom.co.uk/assets/img/home/hero/pingpong-hero.jpg">
         
+        <p class="siteId">Site ID: <%= site.siteId %></p>
+              
+        <h2 class="builtBy">Built by: <%= site.developer %></h2>
+        
+        <h2 class="designer">Designer: <%= site.designer %></h2>
+        
+        <h2 class="accountManager">Account Manager: <%= site.am %></h2>
+        
+        <p><%= site.tags %></p>
+        
+        <div class="divider"></div>
+        
+        <h3>Analytics Stats</h3>
+   
     </div>
     
 </div>

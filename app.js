@@ -30,17 +30,17 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-var sitesRouter = require('./src/routes/sitesRoutes')(nav);
-var adminRouter = require('./src/routes/adminRoutes')(nav);
+var sitesRouter = require('./src/routes/sitesRoutes');
+var adminRouter = require('./src/routes/adminRoutes');
 
-app.use('/sites', sitesRouter);
-app.use('/admin', adminRouter);
+app.use('/sites', sitesRouter(nav));
+app.use('/admin', adminRouter(nav));
 
 app.get('/', function (req, res) {
 
     res.render('index', {
         nav: nav,
-        title: 'Propeller Sites Index'
+        title: 'Index'
     });
 
 });

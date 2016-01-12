@@ -20,40 +20,65 @@ var router = function (nav) {
         .post(function(req, res) {
 
             mongodb.connect(url, function (err, db) {
-                
-                var collection = db.collection('sites');
-                
-                result = req.body;
 
-                collection.insert(result, function(err, results) {
-                    
-                    collection.find({}).toArray(function (err, results) {
+                var collection = db.collection('sites'),
+                    result = req.body,
+                    tags = result.tags.split(','),
+                    data = {};
 
-                        res.render('sitesListView', {
-                            nav: nav,
-                            title: 'Sites',
-                            sites: results
+                for (var i = 0; i < 1; i++) {
+
+                    data = {
+
+                        title: result.title,
+                        developer: result.developer,
+                        designer: result.designer,
+                        am: result.am,
+                        siteId: result.siteId,
+                        tags: tags
+
+                    };
+
+                }
+
+                try {
+
+                    collection.insert(data, function(err, results) {
+
+                        collection.find({}).toArray(function (err, results) {
+
+                            res.render('sitesListView', {
+                                nav: nav,
+                                title: 'Sites',
+                                sites: results
+                            });
+
                         });
 
                     });
-                    
-                });
-                
+
+                }
+                catch (err) {
+
+                    console.log(err);
+
+                }
+
             });
-        
+
         });
-    
+
     adminRouter.route('/delete/:id')
         .get(function (req, res) {
-       
+
             var id = new objectId(req.params.id);
 
             mongodb.connect(url, function (err, db) {
-                
+
                 var collection = db.collection('sites');
-                
-                collection.remove( { _id: id }, 1, function(err, results) {
-                    
+
+                collection.remove({_id: id}, 1, function(err, results) {
+
                     collection.find({}).toArray(function (err, results) {
 
                         res.render('sitesListView', {
@@ -63,11 +88,11 @@ var router = function (nav) {
                         });
 
                     });
-                    
+
                 });
 
             });
-        
+
         });
 
     return adminRouter;
