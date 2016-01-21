@@ -33,7 +33,7 @@
                 <li>
                     <a href="/sites/<%= sites[i]._id %>"><%= sites[i].title %></a> -
 
-                    <form id="delete" method="post" type="multipart/form-data" onSubmit="test(event);" action="/admin/delete">
+                    <form id="delete" method="post" action="/admin/delete">
 
                         <input type="hidden" name="id" value="<%= sites[i]._id %>">
 

@@ -74,7 +74,6 @@ var router = function (nav) {
         .post('/delete', function (req, res) {
 
             var result = objectId(req.body.id);
-        console.log(req.body);
 
             try {
 
@@ -84,14 +83,21 @@ var router = function (nav) {
 
                     collection.remove({_id: result}, 1, function(err, results) {
 
-                        var data = {
-
-                            status: "Site deleted."
-
-                        };
-
-
-                        res.send(JSON.stringify(data));
+//                        collection.find({
+//
+//                        }).toArray(function (err, results) {
+//
+//                            results.title = 'Site deleted.';
+//
+//                            res.render('sitesListView', {
+//                                nav: nav,
+//                                title: 'Sites',
+//                                sites: results
+//                            });
+//
+//                        });
+//                        req.session.success = 'Site deleted';
+                        res.redirect('/sites');
 
                     });
 
@@ -104,7 +110,7 @@ var router = function (nav) {
 
             }
 
-        });
+        })
 
     adminRouter
         .get('/modify/:id', function (req, res) {
