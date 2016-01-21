@@ -83,20 +83,7 @@ var router = function (nav) {
 
                     collection.remove({_id: result}, 1, function(err, results) {
 
-//                        collection.find({
-//
-//                        }).toArray(function (err, results) {
-//
-//                            results.title = 'Site deleted.';
-//
-//                            res.render('sitesListView', {
-//                                nav: nav,
-//                                title: 'Sites',
-//                                sites: results
-//                            });
-//
-//                        });
-//                        req.session.success = 'Site deleted';
+                        req.flash('test', 'Site Deleted.');
                         res.redirect('/sites');
 
                     });

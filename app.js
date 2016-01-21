@@ -1,7 +1,10 @@
 var express = require('express'),
     fs = require('fs'),
     engine = require('ejs-locals'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    session = require('express-session'),
+    cookieParser = require('cookie-parser'),
+    flash = require('express-flash');
 
 var app = express();
 
@@ -15,6 +18,10 @@ var nav = [{
     link: '/sites',
     text: 'Sites'
 }];
+
+app.use(cookieParser('secret'));
+app.use(session({cookie: { maxAge: 60000 }}));
+app.use(flash());
 
 app.use(express.static('public'));
 app.set('views', './src/views');
