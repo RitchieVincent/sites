@@ -37,6 +37,8 @@ var router = function (nav) {
                 var collection = db.collection('sites'),
                     search = req.body.search;
 
+                console.log(req.body);
+
                 collection.createIndex({
 
                     '$**': 'text',
@@ -84,7 +86,7 @@ var router = function (nav) {
 
 //                    collection.dropIndex('TextIndex');
 
-//                    results.title = 'Your search returned ' + results.length + ' results:';
+//                    req.flash('search', 'Your search returned ' + results.length + ' results:');
 
                     res.render('sitesListView', {
                         nav: nav,
