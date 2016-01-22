@@ -20,7 +20,14 @@ var nav = [{
 }];
 
 app.use(cookieParser('secret'));
-app.use(session({cookie: { maxAge: 60000 }}));
+app.use(session({
+    cookie: {
+        maxAge: 60000
+    },
+    resave: true,
+    saveUninitialized: true,
+    secret: 'secret'
+}));
 app.use(flash());
 
 app.use(express.static('public'));
@@ -49,13 +56,13 @@ app.get('/', function (req, res) {
 
 });
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
 
     res.status(404).send('404.');
 
 });
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
 
     console.error(err.stack);
     res.status(500).send('Something broke!');

@@ -47,13 +47,8 @@ var router = function (nav) {
 
                         collection.find({}).toArray(function (err, results) {
 
-                            results.title = 'Site added.';
-
-                            res.render('sitesListView', {
-                                nav: nav,
-                                title: 'Sites',
-                                sites: results
-                            });
+                            req.flash('success', 'Site Added.');
+                            res.redirect('/sites');
 
                         });
 
@@ -83,7 +78,7 @@ var router = function (nav) {
 
                     collection.remove({_id: result}, 1, function(err, results) {
 
-                        req.flash('test', 'Site Deleted.');
+                        req.flash('success', 'Site Deleted.');
                         res.redirect('/sites');
 
                     });
@@ -97,7 +92,7 @@ var router = function (nav) {
 
             }
 
-        })
+        });
 
     adminRouter
         .get('/modify/:id', function (req, res) {
@@ -154,13 +149,8 @@ var router = function (nav) {
 
                             collection.find({}).toArray(function (err, results) {
 
-                                results.title = 'Site updated.';
-
-                                res.render('sitesListView', {
-                                    nav: nav,
-                                    title: 'Sites',
-                                    sites: results
-                                });
+                                req.flash('success', 'Site Modified.');
+                                res.redirect('/sites');
 
                             });
 
