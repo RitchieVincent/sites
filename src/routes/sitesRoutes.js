@@ -35,9 +35,7 @@ var router = function (nav) {
             mongodb.connect(url, function (err, db) {
 
                 var collection = db.collection('sites'),
-                    search = req.body.search;
-
-                console.log(req.body);
+                    search = req.body.term;
 
                 collection.createIndex({
 
@@ -88,11 +86,30 @@ var router = function (nav) {
 
 //                    req.flash('search', 'Your search returned ' + results.length + ' results:');
 
-                    res.render('sitesListView', {
-                        nav: nav,
-                        title: 'Sites',
-                        sites: results
-                    });
+                    console.log(search);
+                    console.log(results.length);
+
+                    if(results.length > 0) {
+
+
+                        try {
+
+                            res.render('sitesListView', {
+                                nav: nav,
+                                title: 'Sites',
+                                sites: results
+                            });
+
+                        }
+
+                        catch (err) {
+
+                            console.log(err);
+
+                        }
+
+
+                    }
 
                 });
 
